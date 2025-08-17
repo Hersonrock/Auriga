@@ -1,6 +1,6 @@
 # Auriga 2D Shooter Game
 
-<table align="center">
+<table align="center" border="0">
 <tr>
   <td valign="top"><img src="assets/asteroid1.png" width="60" height="60"/></td>
   <td valign="middle"><img src="assets/asteroid1.png" width="60" height="60"/></td>
