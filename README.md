@@ -1,7 +1,7 @@
 # Auriga 2D Shooter Game
 
 <p align="center">
-  <img src="assets/asteroid1.png" width="60" height="60"/>
+  <img src="assets/asteroid1.png" width="60" height="60" valign="top"/>
   <img src="assets/Aerial_gif.gif" width="200" height="200"/>
   <img src="assets/asteroid1.png" width="60" height="60"/>
 </p>
