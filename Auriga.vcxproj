@@ -129,9 +129,13 @@
   <ItemGroup>
     <ClCompile Include="Auriga.cpp" />
     <ClCompile Include="ConsoleHelper.cpp" />
+    <ClCompile Include="D3DApp.cpp" />
+    <ClCompile Include="WinApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleHelper.h" />
+    <ClInclude Include="D3DApp.h" />
+    <ClInclude Include="WinApp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

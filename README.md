@@ -17,9 +17,9 @@ Shoot Asteroids and survive
 
 ## 🎮 Features
 - Simple WinAPI window
-- Featuring menus and dialog boxes
-- Sprite rendering
-- Collision handling
+- ~~Featuring menus and dialog boxes~~
+- ~~Sprite rendering~~
+- ~~Collision handling~~
 
 ---
 

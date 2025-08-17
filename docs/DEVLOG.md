@@ -11,6 +11,7 @@ Welcome to my journey! This project starts as a way for me to apply what I've le
 I'm really happy to see how it ended up.
 
 - Adding a Debug console to my empty project, since it has subsystem Windows it would normally not have a console. 
+- Adding a basic Window creation, I'm playing a bit with objects trying to prepare the field to handle Window creation in a different class than DirectX. Let see how that goes.
 
 ### 🔧 Notes
 - Why is so hard to align thigns on a webpage? I'm glad to not be studying webdev...
