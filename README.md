@@ -7,8 +7,8 @@
   <img src="assets/asteroid1.png" width="60" height="60"/>
   <img src="assets/asteroid1.png" width="60" height="60" valign="top"/>
 </p>
-A small 2D shooter game built with [DirectX9]
-Inspired on a a scratch I made a long time ago [Auriga_Scratch](https://scratch.mit.edu/projects/693267247/) 
+A small 2D shooter game built with DirectX9
+Inspired on a a scratch I made a long time ago [Auriga_Scratch](https://scratch.mit.edu/projects/693267247/)
 
 Shoot Asteroids and survive
 
