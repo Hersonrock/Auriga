@@ -21,9 +21,21 @@
     <ClCompile Include="ConsoleHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D3DApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WinApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WinApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
