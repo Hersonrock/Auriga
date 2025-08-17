@@ -96,18 +96,48 @@ int WinApp::initWindow() {
 
 LRESULT CALLBACK WinApp::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	switch (msg) {
-	case WM_CLOSE:
-	{
-		DestroyWindow(hwnd);
-		break;
-	}
-	case WM_DESTROY:
-	{
-		PostQuitMessage(0);
-		break;
-	}
-	default:
-		return  DefWindowProc(hwnd, msg, wParam, lParam);
+
+		case WM_CREATE:
+		{
+			HMENU menuHandler, subMenuHandler;
+
+			menuHandler = CreateMenu();
+
+			subMenuHandler = CreatePopupMenu();
+			AppendMenu(subMenuHandler, MF_STRING, ID_FILE_EXIT, "Exit");
+			AppendMenu(menuHandler, MF_STRING | MF_POPUP, (UINT)subMenuHandler, "File");
+
+			subMenuHandler = CreatePopupMenu();
+			AppendMenu(subMenuHandler, MF_STRING, ID_HELP_ABOUT, "About");
+			AppendMenu(menuHandler, MF_STRING | MF_POPUP, (UINT)subMenuHandler, "Help");
+
+			SetMenu(hwnd, menuHandler);
+			break;
+		}
+		case WM_COMMAND:
+			switch (LOWORD(wParam))
+			{
+			case ID_FILE_EXIT:
+				PostMessage(hwnd, WM_CLOSE, 0, 0);
+				break;
+			case ID_HELP_ABOUT:
+				MessageBox(hwnd, "You clicked About!", "Woo!", MB_OK);
+				break;
+			}
+			break;
+		case WM_CLOSE:
+		{
+			DestroyWindow(hwnd);
+			break;
+		}
+		case WM_DESTROY:
+		{
+			PostQuitMessage(0);
+			break;
+		}
+
+		default:
+			return  DefWindowProc(hwnd, msg, wParam, lParam);
 	}
 	return 0;
 }
