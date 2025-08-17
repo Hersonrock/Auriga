@@ -38,3 +38,6 @@ Shoot Asteroids and survive
 - [Programming Windows 5th Edition, WinAPI](https://www.charlespetzold.com/pw5/)
 - [Beginning DirectX 9](https://books.google.com.co/books/about/Beginning_DirectX_9.html?id=4ZowvgAACAAJ&redir_esc=y)
 - [Introduction to 3D Game Programming with DirectX 9.0](https://www.d3dcoder.net/default.htm)
+
+## 📝 DevLog
+➡️ [Full Dev Log](docs/DEVLOG.md)
