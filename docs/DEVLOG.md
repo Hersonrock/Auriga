@@ -4,6 +4,20 @@ Welcome to my journey! This project starts as a way for me to apply what I've le
 
 ---
 
+## 📅 2025-08-17
+### ✅ Achievements
+
+- Added icons to application, now it looks professional *smug*
+- Added menus, times to populate that About!
+- I have been having so much problems getting the "Cancel" button to work on my About window...
+it turned out to be that the dialog creator tool in VS2022 somehow redefined 
+//#define IDCANCEL                        1002
+and this was causing for the button not to work. 
+
+### 🔧 Notes
+- Using Windows System variables can be useful to handle include/lib paths easier!
+- Now I'll work a bit on the directX side of things.
+
 ## 📅 2025-08-16
 ### ✅ Achievements
 
