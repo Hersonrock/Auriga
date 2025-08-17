@@ -29,3 +29,12 @@ Shoot Asteroids and survive
   <img src="assets/DirectX9.png" width="48" height="48"/>
 
 
+## 📚 References
+
+- [WinAPI Programming Tutorial](https://winprog.org/tutorial/)
+- [Learn to Program for Windows](https://learn.microsoft.com/en-us/windows/win32/learnwin32/learn-to-program-for-windows)
+- [A tour of C++](https://www.stroustrup.com/tour3.html)
+- [LearnCPP](https://www.learncpp.com/)
+- [Programming Windows 5th Edition, WinAPI](https://www.charlespetzold.com/pw5/)
+- [Beginning DirectX 9](https://books.google.com.co/books/about/Beginning_DirectX_9.html?id=4ZowvgAACAAJ&redir_esc=y)
+- [Introduction to 3D Game Programming with DirectX 9.0](https://www.d3dcoder.net/default.htm)
