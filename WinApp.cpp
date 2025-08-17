@@ -98,7 +98,7 @@ LRESULT CALLBACK WinApp::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 	switch (msg) {
 
 		case WM_CREATE:
-		{
+			//Creating the menus
 			HMENU menuHandler, subMenuHandler;
 
 			menuHandler = CreateMenu();
@@ -113,31 +113,47 @@ LRESULT CALLBACK WinApp::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 
 			SetMenu(hwnd, menuHandler);
 			break;
-		}
 		case WM_COMMAND:
 			switch (LOWORD(wParam))
 			{
-			case ID_FILE_EXIT:
-				PostMessage(hwnd, WM_CLOSE, 0, 0);
-				break;
-			case ID_HELP_ABOUT:
-				MessageBox(hwnd, "You clicked About!", "Woo!", MB_OK);
-				break;
+				case ID_FILE_EXIT:
+					PostMessage(hwnd, WM_CLOSE, 0, 0);
+					break;
+				case ID_HELP_ABOUT:
+					DialogBox(GetModuleHandle(NULL), MAKEINTRESOURCE(IDD_DIALOG1), hwnd, AboutDlgProc);
+					break;
 			}
 			break;
 		case WM_CLOSE:
-		{
 			DestroyWindow(hwnd);
 			break;
-		}
 		case WM_DESTROY:
-		{
 			PostQuitMessage(0);
 			break;
-		}
 
 		default:
 			return  DefWindowProc(hwnd, msg, wParam, lParam);
 	}
 	return 0;
+}
+
+BOOL CALLBACK WinApp::AboutDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
+{
+	switch (Message)
+	{
+	case WM_INITDIALOG:
+
+		return TRUE;
+	case WM_COMMAND:
+		switch (LOWORD(wParam))
+		{
+		case IDCANCEL:
+			EndDialog(hwnd, IDCANCEL);
+			break;
+		}
+		break;
+	default:
+		return FALSE;
+	}
+	return TRUE;
 }

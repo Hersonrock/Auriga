@@ -54,5 +54,14 @@
     <Image Include="..\..\..\Pictures\Icon\Aerial32.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\..\Downloads\asteroid1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\pictures\icon\bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\asteroid1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

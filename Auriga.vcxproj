@@ -152,8 +152,11 @@
     <ResourceCompile Include="Auriga.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\Downloads\asteroid1.png" />
     <Image Include="..\..\..\Pictures\Icon\Aerial16.ico" />
     <Image Include="..\..\..\Pictures\Icon\Aerial32.ico" />
+    <Image Include="..\..\..\pictures\icon\bitmap1.bmp" />
+    <Image Include="assets\asteroid1.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
