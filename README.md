@@ -28,10 +28,4 @@ Shoot Asteroids and survive
   <img src="https://skillicons.dev/icons?i=cpp,windows,visualstudio"/>
   <img src="assets/DirectX9.png" width="48" height="48"/>
 
-### Build & Run
-```bash
-# clone the repo
-git clone https://github.com/Hersonrock/Auriga
-cd Auriga
-
 
