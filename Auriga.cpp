@@ -1,7 +1,20 @@
 #include <iostream>
+#include <print>
+#include "ConsoleHelper.h"
 
-int main()
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
 {
-    std::cout << "Hello World!\n";
+#ifdef _DEBUG
+	CreateDebugConsole();
+	std::println("Console initialized");
+#endif //_DEBUG
+
+	std::cin.get();
+
+#ifdef _DEBUG
+	DestroyDebugConsole();
+#endif //_DEBUG
+
+	return 0;
 }
 
