@@ -14,7 +14,7 @@ I'm really happy to see how it ended up.
 - Why is so hard to align thigns on a webpage? I'm glad to not be studying webdev...
 
 <p align="center">
-  <img src="./assets/Aerial_gif.gif" width="200" height="200"/>
+  <img src="../assets/Aerial_gif.gif" width="50" height="50"/>
 </p>
 
 
