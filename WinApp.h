@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <system_error>
 #include <format>
+#include "resource.h"
 
 const char className[] = "Auriga";
 

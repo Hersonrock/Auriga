@@ -52,13 +52,13 @@ int WinApp::initWindow() {
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
 	wcex.hInstance = this->instanceHandle_;
-	wcex.hIcon = 0;
-	wcex.hIconSm = 0;
+	wcex.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
+	wcex.hIconSm = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON2));
 	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 	wcex.lpszMenuName = 0;
 	wcex.lpszClassName = this->className_.c_str();
-	wcex.hIconSm = LoadIcon(nullptr, IDI_APPLICATION);
+	wcex.hIconSm = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON2));
 
 	// Registering the window
 	if (!RegisterClassEx(&wcex)) {
