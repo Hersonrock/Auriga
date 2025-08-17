@@ -1,14 +1,16 @@
 # Auriga 2D Shooter Game
 
-<p align="center">
-  <img src="assets/asteroid1.png" width="60" height="60" style="vertical-align: middle;"/>
-  <img src="assets/asteroid1.png" width="60" height="60"/>
-  <img src="assets/asteroid1.png" width="60" height="60" style="vertical-align: top;"/>
-  <img src="assets/Aerial_gif.gif" width="200" height="200"/>
-  <img src="assets/asteroid1.png" width="60" height="60"/>
-  <img src="assets/asteroid1.png" width="60" height="60" style="vertical-align: top;"/>
-  <img src="assets/asteroid1.png" width="60" height="60" style="vertical-align: middle;"/>
-</p>
+<table align="center">
+<tr>
+  <td valign="top"><img src="assets/asteroid1.png" width="60" height="60"/></td>
+  <td valign="middle"><img src="assets/asteroid1.png" width="60" height="60"/></td>
+  <td valign="top"><img src="assets/asteroid1.png" width="60" height="60"/></td>
+  <td><img src="assets/Aerial_gif.gif" width="200" height="200"/></td>
+  <td valign="middle"><img src="assets/asteroid1.png" width="60" height="60"/></td>
+  <td valign="top"><img src="assets/asteroid1.png" width="60" height="60"/></td>
+  <td valign="middle"><img src="assets/asteroid1.png" width="60" height="60"/></td>
+</tr>
+</table>
 
 A small 2D shooter game built with DirectX9  
 Inspired by a Scratch project I made a long time ago: [Auriga_Scratch](https://scratch.mit.edu/projects/693267247/)
