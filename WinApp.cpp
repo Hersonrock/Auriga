@@ -20,8 +20,6 @@ WinApp::~WinApp() {
 	UnregisterClass(className_.c_str(), instanceHandle_);
 }
 
-
-
 int WinApp::messageLoop() {
 	MSG msg{};
 	int result;
@@ -31,16 +29,12 @@ int WinApp::messageLoop() {
 		DispatchMessage(&msg);
 	}
 
-	if (result == 0)
-	{
-		return static_cast<int>(msg.wParam);
-	}
-	else
+	if (!result)
 	{
 		DWORD ec = GetLastError();
 		throw std::system_error(static_cast<int>(ec), std::system_category());
 	}
-
+	return static_cast<int>(msg.wParam);
 }
 
 int WinApp::initWindow() {
@@ -81,11 +75,9 @@ int WinApp::initWindow() {
 		nullptr
 	);
 
-
 	if (!windowHandle_) {
 		DWORD ec = GetLastError();
 		throw std::system_error(static_cast<int>(ec), std::system_category());
-
 	}
 
 	ShowWindow(windowHandle_, this->initialWindowState_);

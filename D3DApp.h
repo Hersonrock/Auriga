@@ -13,15 +13,7 @@
 #define BACKBUFFERWIDTH  640
 #define BACKBUFFERHEIGHT  480
 
-
-//Class holding information about adapters.
-struct D3DAdapterInfo
-{
-	D3DADAPTER_IDENTIFIER9 adapterIdentifier;
-	D3DDISPLAYMODE desktopMode;      
-	uint32_t	numModes;
-	std::vector<D3DDISPLAYMODE> validModes;
-};
+struct D3DAdapterInfo;
 
 class D3DApp {
 
@@ -39,7 +31,7 @@ public:
 	uint32_t adapterCount_;
 	std::vector<D3DAdapterInfo>	adapters_;
 
-	bool initDirect3D(HWND wndHandle, bool windowed);
+	bool initDirect3D(HWND wndHandle, bool isWindowed);
 	void render(void);
 	void cleanUp(void);
 
