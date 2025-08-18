@@ -4,6 +4,14 @@ Welcome to my journey! This project starts as a way for me to apply what I've le
 
 ---
 
+## 📅 2025-08-18
+### ✅ Achievements
+
+- Added a lot of of exception handling on D3Dapp code.
+- Fixed an issue where render() was not called
+- Cleaned up the BuildDeviceList function
+
+
 ## 📅 2025-08-17
 ### ✅ Achievements
 
@@ -13,6 +21,9 @@ Welcome to my journey! This project starts as a way for me to apply what I've le
 it turned out to be that the dialog creator tool in VS2022 somehow redefined 
 //#define IDCANCEL                        1002
 and this was causing for the button not to work. 
+- Adding Build of device list
+- Adding Basic D3DInitialization and clean up.
+
 
 ### 🔧 Notes
 - Using Windows System variables can be useful to handle include/lib paths easier!
