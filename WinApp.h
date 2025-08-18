@@ -13,19 +13,23 @@ class WinApp {
 
 public:
 
-	WinApp(HINSTANCE hInstance, int nCmdShow);
+	WinApp(HINSTANCE hInstance, int nCmdShow, int width, int height);
 	~WinApp();
 	HWND windowHandle_;
+	HINSTANCE instanceHandle_;
 
 	static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static BOOL CALLBACK AboutDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam);
-	int run();
+	
+	int initWindow();
+	int messageLoop();
+
 
 private:
 	const std::string className_;
-	HINSTANCE instanceHandle_;
+	
 	INT initialWindowState_;
 
-	int initWindow();
-	int messageLoop();
+	uint32_t  WindowWidth_;
+	uint32_t  WindowHeight_;
 };

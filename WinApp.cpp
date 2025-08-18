@@ -1,10 +1,12 @@
 #include "WinApp.h"
 
-WinApp::WinApp(HINSTANCE hInstance, int nCmdShow)
+WinApp::WinApp(HINSTANCE hInstance, int nCmdShow, int width, int height)
 	: windowHandle_(nullptr),
 	className_(className),
 	instanceHandle_(hInstance),
-	initialWindowState_(nCmdShow)
+	initialWindowState_(nCmdShow),
+	WindowWidth_(width),
+	WindowHeight_(height)
 {
 	initWindow();
 }
@@ -18,9 +20,7 @@ WinApp::~WinApp() {
 	UnregisterClass(className_.c_str(), instanceHandle_);
 }
 
-int WinApp::run() {
-	return 	messageLoop();
-}
+
 
 int WinApp::messageLoop() {
 	MSG msg{};
@@ -73,8 +73,8 @@ int WinApp::initWindow() {
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
-		640,
-		480,
+		WindowWidth_,
+		WindowHeight_,
 		nullptr,
 		nullptr,
 		this->instanceHandle_,

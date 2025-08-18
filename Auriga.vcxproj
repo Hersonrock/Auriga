@@ -157,6 +157,7 @@
     <Image Include="..\..\..\Pictures\Icon\Aerial32.ico" />
     <Image Include="..\..\..\pictures\icon\bitmap1.bmp" />
     <Image Include="assets\asteroid1.bmp" />
+    <Image Include="Segfault.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

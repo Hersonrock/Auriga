@@ -9,6 +9,11 @@
 #include <vector>
 #include <cstdint>
 
+
+#define BACKBUFFERWIDTH  640
+#define BACKBUFFERHEIGHT  480
+
+
 //Class holding information about adapters.
 struct D3DAdapterInfo
 {
@@ -22,13 +27,13 @@ class D3DApp {
 
 public:
 	D3DApp(HINSTANCE hInstance, int nCmdShow);
-	~D3DApp() = default;
+	~D3DApp();
 
 	WinApp winApp_;
 
 	IDirect3D9* d3d_;
-	IDirect3D9* device_;
-	IDirect3D9* backbuffer_;
+	IDirect3DDevice9* device_;
+	IDirect3DSurface9* backbuffer_;
 	D3DSURFACE_DESC backbufferDescription_;
 
 	uint32_t adapterCount_;
@@ -39,6 +44,9 @@ public:
 	void cleanUp(void);
 
 	HRESULT BuildDeviceList();
+
+	int run();
+
 private:
 	
 	IDirect3DSurface9* offscreenSurface_;

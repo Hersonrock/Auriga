@@ -15,7 +15,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 	try
 	{
 		D3DApp app{ hInstance, nCmdShow };
-		statusReturn = app.winApp_.run();
+		statusReturn = app.run();
 	}
 	catch (const std::system_error& e)
 	{
