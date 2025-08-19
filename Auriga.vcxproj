@@ -89,7 +89,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);d3d9.lib;d3dx9.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);d3d9.lib;d3dx9.lib;DxErr.lib;legacy_stdio_definitions.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -105,7 +105,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);d3d9.lib;d3dx9.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);d3d9.lib;d3dx9.lib;DxErr.lib;legacy_stdio_definitions.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -140,11 +140,13 @@
     <ClCompile Include="Auriga.cpp" />
     <ClCompile Include="ConsoleHelper.cpp" />
     <ClCompile Include="D3DApp.cpp" />
+    <ClCompile Include="RipErrorHandler.h" />
     <ClCompile Include="WinApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleHelper.h" />
     <ClInclude Include="D3DApp.h" />
+    <ClInclude Include="dxerr9.h" />
     <ClInclude Include="ErrorHandler.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="WinApp.h" />

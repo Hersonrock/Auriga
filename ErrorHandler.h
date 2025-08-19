@@ -16,7 +16,6 @@ inline void check_hr(HRESULT hr, std::string_view where) {
 }
 
 // For Win32 I need to check BOOL and use GetLastError()
-
 inline void check_win(BOOL ok, std::string_view where) {
 	if (!ok) { // throws if ok is false.
 		const DWORD ec = GetLastError();

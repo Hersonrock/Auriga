@@ -38,10 +38,10 @@ int D3DApp::run() {
 
 bool D3DApp::initDirect3D(HWND wndHandle, bool isWindowed) {
 
+
 	d3d_ = Direct3DCreate9(D3D_SDK_VERSION);
 	if (!d3d_) {
-		DWORD ec = GetLastError();
-		throw std::system_error(static_cast<int>(ec), std::system_category());
+		throw std::runtime_error("Direct3DCreate9 failed to create Object");
 	}
 		
 	D3DPRESENT_PARAMETERS d3dpp{};
@@ -53,13 +53,7 @@ bool D3DApp::initDirect3D(HWND wndHandle, bool isWindowed) {
 	d3dpp.BackBufferHeight = BACKBUFFERHEIGHT;
 	d3dpp.hDeviceWindow = wndHandle;
 
-	d3d_->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, wndHandle, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &device_);
-
-	if (!device_)
-	{
-		DWORD ec = GetLastError();
-		throw std::system_error(static_cast<int>(ec), std::system_category());
-	}
+	HR(d3d_->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, wndHandle, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &device_));
 
 	return true;
 }

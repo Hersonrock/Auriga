@@ -7,9 +7,10 @@
 #include <iostream>
 #include <vector>
 #include <cstdint>
+#include "DxErr.h"
 #include "WinApp.h"
 #include "ErrorHandler.h"
-
+#include "RipErrorHandler.h"
 
 #define BACKBUFFERWIDTH  640
 #define BACKBUFFERHEIGHT  480
