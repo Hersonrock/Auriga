@@ -28,12 +28,8 @@ int WinApp::messageLoop() {
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
+	check_win(!result, "GetMessage");
 
-	if (!result)
-	{
-		DWORD ec = GetLastError();
-		throw std::system_error(static_cast<int>(ec), std::system_category());
-	}
 	return static_cast<int>(msg.wParam);
 }
 
@@ -55,10 +51,7 @@ int WinApp::initWindow() {
 	wcex.hIconSm = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON2));
 
 	// Registering the window
-	if (!RegisterClassEx(&wcex)) {
-		DWORD ec = GetLastError();
-		throw std::system_error(static_cast<int>(ec), std::system_category());
-	}
+	check_win(RegisterClassEx(&wcex), "RegisterClassEx");
 
 	// Creating the window
 	windowHandle_ = CreateWindow(
@@ -76,10 +69,10 @@ int WinApp::initWindow() {
 	);
 
 	if (!windowHandle_) {
-		DWORD ec = GetLastError();
-		throw std::system_error(static_cast<int>(ec), std::system_category());
+		check_win(false, "CreateWindow");
+		return 1;
 	}
-
+	
 	ShowWindow(windowHandle_, this->initialWindowState_);
 	UpdateWindow(windowHandle_);
 

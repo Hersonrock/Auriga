@@ -6,6 +6,7 @@
 #include <system_error>
 #include <format>
 #include "resource.h"
+#include "ErrorHandler.h"
 
 const char className[] = "Auriga";
 

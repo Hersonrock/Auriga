@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="ConsoleHelper.h" />
     <ClInclude Include="D3DApp.h" />
+    <ClInclude Include="ErrorHandler.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="WinApp.h" />
   </ItemGroup>

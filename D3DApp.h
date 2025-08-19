@@ -1,5 +1,4 @@
 #pragma once
-#include "WinApp.h"
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <fstream>
@@ -8,6 +7,8 @@
 #include <iostream>
 #include <vector>
 #include <cstdint>
+#include "WinApp.h"
+#include "ErrorHandler.h"
 
 
 #define BACKBUFFERWIDTH  640
@@ -35,7 +36,8 @@ public:
 	void render(void);
 	void cleanUp(void);
 
-	HRESULT BuildDeviceList();
+	HRESULT buildDeviceList(void);
+	void loadSurface(void);
 
 	int run();
 
