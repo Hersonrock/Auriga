@@ -53,7 +53,7 @@ bool D3DApp::initDirect3D(HWND wndHandle, bool isWindowed) {
 	d3dpp.BackBufferHeight = BACKBUFFERHEIGHT;
 	d3dpp.hDeviceWindow = wndHandle;
 
-	HR(d3d_->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, wndHandle, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &device_));
+	check_hr(d3d_->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, wndHandle, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &device_), "CreateDevice");
 
 	return true;
 }
