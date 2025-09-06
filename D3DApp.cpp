@@ -159,20 +159,20 @@ HRESULT D3DApp::buildDeviceList(void)
 
 void D3DApp::cleanUp(void)
 {
-	
-	device_->Release();
-	device_ = nullptr;
-	
-
-	d3d_->Release();
-	d3d_ = nullptr;
-	
-	
-	offscreenSurface_->Release();
-	offscreenSurface_ = nullptr;
-	
-	
-	backbuffer_->Release();
-	backbuffer_ = nullptr;
-	
+	if (device_) {
+		device_->Release();
+		device_ = nullptr;
+	}
+	if (d3d_) {
+		d3d_->Release();
+		d3d_ = nullptr;
+	}
+	if (offscreenSurface_) {
+		offscreenSurface_->Release();
+		offscreenSurface_ = nullptr;
+	}
+	if (backbuffer_) {
+		backbuffer_->Release();
+		backbuffer_ = nullptr;
+	}
 }
