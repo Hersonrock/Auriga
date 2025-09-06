@@ -30,12 +30,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
 		statusReturn = 1;
 	}
 
-	return statusReturn;
+
 
 #ifdef _DEBUG
 	DestroyDebugConsole();
 #endif //_DEBUG
 
-	return 0;
+	return statusReturn;
 }
 
