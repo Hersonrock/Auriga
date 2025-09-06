@@ -19,7 +19,7 @@ D3DApp::D3DApp(HINSTANCE hInstance, int nCmdShow)
 	  offscreenSurface_(nullptr),
 	  adapters_{}
 {
-	initDirect3D(winApp_.windowHandle_, true);
+	
 }
 
 D3DApp::~D3DApp(){
@@ -28,6 +28,7 @@ D3DApp::~D3DApp(){
 
 int D3DApp::run() {
 
+	initDirect3D(winApp_.windowHandle_, true);
 	buildDeviceList();
 	loadSurface();
 	render();
