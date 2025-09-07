@@ -41,9 +41,9 @@ bool D3DApp::initDirect3D(HWND wndHandle, bool isWindowed) {
 
 
 	d3d_ = Direct3DCreate9(D3D_SDK_VERSION);
-	if (!d3d_) {
-		throw std::runtime_error("Direct3DCreate9 failed to create Object");
-	}
+	d3d_ = nullptr;
+	check_ptr(d3d_);
+
 		
 	D3DPRESENT_PARAMETERS d3dpp{};
 	d3dpp.Windowed = isWindowed;
@@ -94,10 +94,7 @@ void D3DApp::loadSurface(void) {
 HRESULT D3DApp::buildDeviceList(void)
 {
 	adapterCount_ = d3d_->GetAdapterCount();
-	if (adapterCount_ == 0)
-	{
-		throw std::runtime_error("No graphics adapters available.");
-	}
+	check_nonzero(adapterCount_);
 
 	adapters_.resize(adapterCount_);
 

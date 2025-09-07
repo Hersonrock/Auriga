@@ -9,9 +9,13 @@
 #if defined(DEBUG) || defined(_DEBUG)
 #define check_hr(x) __check_hr((x), __FILE__, __LINE__)
 #define check_win(x) __check_win((x), __FILE__, __LINE__)
+#define check_ptr(x) __check_ptr((x), __FILE__, __LINE__)
+#define check_nonzero(x) __check_nonzero((x), __FILE__, __LINE__)
 #else
 #define check_hr(x) (x)
 #define check_win(x) (x)
+#define check_ptr(x) (x)
+#define check_nonzero(x) (x)
 #endif //DEBUG || _DEBUG
 
 //Inline is used so the throw comes from the affected line. 
@@ -49,3 +53,22 @@ inline void __check_win(BOOL ok, const char* file, int line) {
     }
 }
 
+// Pointer check 
+inline void __check_ptr(const void* ptr, const char* file, int line) {
+    if (!ptr) {
+        throw std::runtime_error(std::format(
+            "Null pointer failure at {}:{}",
+            file, line
+        ));
+    }
+}
+
+//INT check 
+inline void __check_nonzero(int value, const char* file, int line) {
+    if (value == 0) {
+        throw std::runtime_error(std::format(
+            "Unexpected zero return at {}:{}",
+            file, line
+        ));
+    }
+}
