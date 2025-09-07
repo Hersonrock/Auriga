@@ -55,7 +55,7 @@ bool D3DApp::initDirect3D(HWND wndHandle, bool isWindowed) {
 	d3dpp.hDeviceWindow = wndHandle;
 
 	buildDeviceList();
-	check_hr(d3d_->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, wndHandle, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &device_));
+	check_hr(d3d_->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, wndHandle, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &device_));
 
 	//[Learning] - I dont need this object anymore.after creating the device list data andthe d3ddevice
 	d3d_->Release();
