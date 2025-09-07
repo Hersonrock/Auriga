@@ -50,12 +50,12 @@ bool D3DApp::initDirect3D(HWND wndHandle, bool isWindowed) {
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
 	d3dpp.BackBufferCount = 1;
-	d3dpp.BackBufferWidth = BACKBUFFERWIDTH;
+	d3dpp.BackBufferWidth = BACKBUFFERWIDTH;;
 	d3dpp.BackBufferHeight = BACKBUFFERHEIGHT;
 	d3dpp.hDeviceWindow = wndHandle;
 
-	check_hr(d3d_->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, wndHandle, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &device_), "CreateDevice");
-	check_hr(E_FAIL, "the end of madness");
+	check_hr(d3d_->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, wndHandle, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &device_));
+
 	return true;
 }
 
@@ -72,18 +72,18 @@ void D3DApp::render(void) {
 void D3DApp::loadSurface(void) {
 
 
-	check_hr(device_->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backbuffer_),"GetBackBuffer");
-	check_hr(backbuffer_->GetDesc(&backbufferDescription_), "GetDesc");
+	check_hr(device_->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backbuffer_));
+	check_hr(backbuffer_->GetDesc(&backbufferDescription_));
 
 	//backbuffer_->Release();
 	//backbuffer_ = nullptr;
 
 	check_hr(device_->CreateOffscreenPlainSurface(backbufferDescription_.Width, backbufferDescription_.Height,
-		D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &offscreenSurface_, NULL), "CreateOffscreenPlainSurface");
+		D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &offscreenSurface_, NULL));
 	
 	RECT destRect = { 0, 0, 640, 389 };
 	std::wstring image1 = L"Segfault.bmp";
-	check_hr(D3DXLoadSurfaceFromFileW(offscreenSurface_, NULL, &destRect, image1.c_str(), NULL, D3DX_DEFAULT, 0, NULL),"D3DXLoadSurfaceFromFileW");
+	check_hr(D3DXLoadSurfaceFromFileW(offscreenSurface_, NULL, &destRect, image1.c_str(), NULL, D3DX_DEFAULT, 0, NULL));
 }
 
 HRESULT D3DApp::buildDeviceList(void)

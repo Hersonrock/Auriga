@@ -140,7 +140,6 @@
     <ClCompile Include="Auriga.cpp" />
     <ClCompile Include="ConsoleHelper.cpp" />
     <ClCompile Include="D3DApp.cpp" />
-    <ClCompile Include="RipErrorHandler.h" />
     <ClCompile Include="WinApp.cpp" />
   </ItemGroup>
   <ItemGroup>
