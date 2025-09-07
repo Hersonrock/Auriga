@@ -22,6 +22,7 @@ public:
 	static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static BOOL CALLBACK AboutDlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam);
 	
+	void initApp();
 	int initWindow();
 	int messageLoop();
 

@@ -8,7 +8,7 @@ WinApp::WinApp(HINSTANCE hInstance, int nCmdShow, int width, int height)
 	WindowWidth_(width),
 	WindowHeight_(height)
 {
-	initWindow();
+	
 }
 
 WinApp::~WinApp() {
@@ -19,6 +19,9 @@ WinApp::~WinApp() {
 	}
 	UnregisterClass(className_.c_str(), instanceHandle_);
 }
+void WinApp::initApp() {
+	initWindow();
+}
 
 int WinApp::messageLoop() {
 	MSG msg{};
@@ -28,7 +31,7 @@ int WinApp::messageLoop() {
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
-	check_win(!result, "GetMessage");
+	check_win(!result);
 
 	return static_cast<int>(msg.wParam);
 }
@@ -51,7 +54,7 @@ int WinApp::initWindow() {
 	wcex.hIconSm = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON2));
 
 	// Registering the window
-	check_win(RegisterClassEx(&wcex), "RegisterClassEx");
+	check_win(RegisterClassEx(&wcex));
 
 	// Creating the window
 	windowHandle_ = CreateWindow(
@@ -67,11 +70,7 @@ int WinApp::initWindow() {
 		this->instanceHandle_,
 		nullptr
 	);
-
-	if (!windowHandle_) {
-		check_win(false, "CreateWindow");
-		return 1;
-	}
+	check_win(windowHandle_ != nullptr);
 	
 	ShowWindow(windowHandle_, this->initialWindowState_);
 	UpdateWindow(windowHandle_);

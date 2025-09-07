@@ -8,8 +8,10 @@
 
 #if defined(DEBUG) || defined(_DEBUG)
 #define check_hr(x) __check_hr((x), __FILE__, __LINE__)
+#define check_win(x) __check_win((x), __FILE__, __LINE__)
 #else
-#define hr(x) (x)
+#define check_hr(x) (x)
+#define check_win(x) (x)
 #endif //DEBUG || _DEBUG
 
 //Inline is used so the throw comes from the affected line. 
@@ -30,13 +32,20 @@ inline void __check_hr(HRESULT hr, const char* file, int line) {
 }
 
 // For Win32 I need to check BOOL and use GetLastError()
-inline void check_win(BOOL ok, std::string_view where) {
-	if (!ok) { // throws if ok is false.
-		const DWORD ec = GetLastError();
-		throw std::system_error(
-			std::error_code(static_cast<int>(ec), std::system_category()),
-			std::string(where)
-		);
-	}
+inline void __check_win(BOOL ok, const char* file, int line) {
+    if (!ok) {
+        const DWORD ec = GetLastError();
+        const std::string sys_msg = std::system_category().message(ec); 
+
+        std::string msg = std::format(
+            "Win32 error {:#010x}: {} {}:{}",
+            static_cast<unsigned long>(ec),
+            sys_msg,
+            file,
+            line
+        );
+
+        throw std::runtime_error(msg);
+    }
 }
 

@@ -28,6 +28,7 @@ D3DApp::~D3DApp(){
 
 int D3DApp::run() {
 
+	winApp_.initApp();
 	initDirect3D(winApp_.windowHandle_, true);
 	buildDeviceList();
 	loadSurface();
