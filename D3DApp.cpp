@@ -30,7 +30,6 @@ int D3DApp::run() {
 
 	winApp_.initApp();
 	initDirect3D(winApp_.windowHandle_, true);
-	buildDeviceList();
 	loadSurface();
 	render();
 	winApp_.messageLoop();
@@ -55,7 +54,12 @@ bool D3DApp::initDirect3D(HWND wndHandle, bool isWindowed) {
 	d3dpp.BackBufferHeight = BACKBUFFERHEIGHT;
 	d3dpp.hDeviceWindow = wndHandle;
 
+	buildDeviceList();
 	check_hr(d3d_->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, wndHandle, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &device_));
+
+	//[Learning] - I dont need this object anymore.after creating the device list data andthe d3ddevice
+	d3d_->Release();
+	d3d_ = nullptr;
 
 	return true;
 }
@@ -165,10 +169,13 @@ void D3DApp::cleanUp(void)
 		device_->Release();
 		device_ = nullptr;
 	}
+
+	// Redudant release, keeping it for safety.
 	if (d3d_) {
 		d3d_->Release();
 		d3d_ = nullptr;
 	}
+
 	if (offscreenSurface_) {
 		offscreenSurface_->Release();
 		offscreenSurface_ = nullptr;
