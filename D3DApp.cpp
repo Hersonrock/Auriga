@@ -41,7 +41,6 @@ bool D3DApp::initDirect3D(HWND wndHandle, bool isWindowed) {
 
 
 	d3d_ = Direct3DCreate9(D3D_SDK_VERSION);
-	d3d_ = nullptr;
 	check_ptr(d3d_);
 
 		
@@ -70,6 +69,10 @@ void D3DApp::render(void) {
 
 	RECT srcRect = { 0, 0, 640, 389 };
 
+	if (!backbuffer_) {
+		check_hr(device_->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backbuffer_));
+	}
+
 	device_->StretchRect(offscreenSurface_,&srcRect, backbuffer_, NULL, D3DTEXF_NONE);
 	device_->Present(NULL, NULL, NULL, NULL);
 }
@@ -79,9 +82,10 @@ void D3DApp::loadSurface(void) {
 
 	check_hr(device_->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backbuffer_));
 	check_hr(backbuffer_->GetDesc(&backbufferDescription_));
-
-	//backbuffer_->Release();
-	//backbuffer_ = nullptr;
+	if (backbuffer_) {
+		backbuffer_->Release();
+		backbuffer_ = nullptr;
+	}
 
 	check_hr(device_->CreateOffscreenPlainSurface(backbufferDescription_.Width, backbufferDescription_.Height,
 		D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &offscreenSurface_, NULL));
