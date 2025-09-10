@@ -100,36 +100,43 @@ void D3DApp::loadSurface(void) {
 
 	D3DCOLOR color = D3DCOLOR_XRGB(107, 140, 255);
 	check_hr(device_->ColorFill(offscreenSurface_, nullptr, color));
-
-
 	int scale = 4;
-	int sSize = 7;
+	int spriteSize = 7;
+	int nBlocks = 5;
+	for (int i = 0; i < nBlocks; i++) {
+		D3DApp::drawBlock(texSurface_, offscreenSurface_, scale, spriteSize, 40, 2, scale * i * 2 * 7, static_cast<int>(backbufferDescription_.Height));
+	}
+	for (int i = 5; i < nBlocks+5; i++) {
+		D3DApp::drawBlock(texSurface_, offscreenSurface_, scale, spriteSize, 58, 38, scale * i * 2 * 7, static_cast<int>(backbufferDescription_.Height));
+	}
+	
+}
+void D3DApp::drawBlock(IDirect3DSurface9* srcSurface, IDirect3DSurface9* dstSurface, 
+	                    int scale,int sSize, int startSpriteX, 
+	                    int startSpriteY, int startRenderX, int startRenderY) {
+
 	int sqrSize = scale * sSize;
-	int startX = 40;
-	int startY = 2;
 	RECT srcTileRect;
 	RECT dstTileRect;
-	int height = static_cast<int>(backbufferDescription_.Height);
-	int width = static_cast<int>(backbufferDescription_.Width);
-	int offsetSprite1[2] = {0, sSize + 2};
-	int offsetSprite2[2] = {sSize, sSize * 2 + 2};
+	int offsetSprite1[2] = { 0, sSize + 2 };
+	int offsetSprite2[2] = { sSize, sSize * 2 + 2 };
 
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 2; j++) {
 
-			srcTileRect = { startX + offsetSprite1[i], 
-				            startY + offsetSprite1[j], 
-				            startX + offsetSprite2[i], 
-				            startY + offsetSprite2[j]};
+			srcTileRect = { startSpriteX + offsetSprite1[i],
+							startSpriteY + offsetSprite1[j],
+							startSpriteX + offsetSprite2[i],
+							startSpriteY + offsetSprite2[j] };
 
-			dstTileRect = { i * sqrSize,
-						   height + (j - 2) * sqrSize,
-						   (i + 1)* sqrSize, 
-						   height + (j - 1) * sqrSize };
+			dstTileRect = { startRenderX+  i * sqrSize,
+						    startRenderY + (j - 2) * sqrSize,
+						    startRenderX + (i + 1) * sqrSize,
+						    startRenderY + (j - 1) * sqrSize };
 
 			check_hr(device_->StretchRect(texSurface_, &srcTileRect, offscreenSurface_, &dstTileRect, D3DTEXF_NONE));
 		}
-	}
+	}  
 }
 
 HRESULT D3DApp::buildDeviceList(void)

@@ -33,6 +33,7 @@ public:
 	std::vector<D3DAdapterInfo>	adapters_;
 
 	bool initDirect3D(HWND wndHandle, bool isWindowed);
+	void drawBlock(IDirect3DSurface9* srcSurface, IDirect3DSurface9* dstSurface, int scale, int sSize, int startSpriteX, int startSpriteY, int startRenderX, int startRenderY);
 	void render(void);
 	void cleanUp(void);
 
