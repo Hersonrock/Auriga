@@ -105,36 +105,30 @@ void D3DApp::loadSurface(void) {
 	int scale = 4;
 	int sSize = 7;
 	int sqrSize = scale * sSize;
-	int startOffsetX = 40;
-	int startOffsetY = 2;
+	int startX = 40;
+	int startY = 2;
 	RECT srcTileRect;
 	RECT dstTileRect;
 	int height = static_cast<int>(backbufferDescription_.Height);
 	int width = static_cast<int>(backbufferDescription_.Width);
+	int offsetSprite1[2] = {0, sSize + 2};
+	int offsetSprite2[2] = {sSize, sSize * 2 + 2};
 
-	//int width = 640;
-	//int height = 480;
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++) {
 
-	for (size_t i = 0; i < 4; i++) {
+			srcTileRect = { startX + offsetSprite1[i], 
+				            startY + offsetSprite1[j], 
+				            startX + offsetSprite2[i], 
+				            startY + offsetSprite2[j]};
 
-		if (i == 0) {
-			srcTileRect = { startOffsetX, startOffsetY, startOffsetX + sSize, startOffsetY + sSize };
-			dstTileRect = { 0, height - sqrSize * 2 , sqrSize, height - sqrSize };
-		}
-		else if (i == 1) {
-			srcTileRect = { startOffsetX + sSize + 2, startOffsetY, startOffsetX + sSize * 2 + 2, startOffsetY + sSize };
-			dstTileRect = { sqrSize, height - sqrSize * 2 , sqrSize * 2, height - sqrSize };
-		}
-		else if (i == 2) {
-			srcTileRect = { startOffsetX, startOffsetY + sSize + 2 , startOffsetX + sSize, startOffsetY + sSize * 2 + 2 };
-			dstTileRect = { 0, height - sqrSize , sqrSize, height };
-		}
-		else if (i == 3) {
-			srcTileRect = { startOffsetX + sSize + 2, startOffsetY + sSize + 2, startOffsetX + sSize * 2 + 2, startOffsetY + sSize * 2 + 2 };
-			dstTileRect = { sqrSize, height - sqrSize , sqrSize * 2, height };
-		}
+			dstTileRect = { i * sqrSize,
+						   height + (j - 2) * sqrSize,
+						   (i + 1)* sqrSize, 
+						   height + (j - 1) * sqrSize };
 
-		check_hr(device_->StretchRect(texSurface_, &srcTileRect, offscreenSurface_,&dstTileRect, D3DTEXF_NONE));
+			check_hr(device_->StretchRect(texSurface_, &srcTileRect, offscreenSurface_, &dstTileRect, D3DTEXF_NONE));
+		}
 	}
 }
 
