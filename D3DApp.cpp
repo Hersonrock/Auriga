@@ -65,15 +65,13 @@ bool D3DApp::initDirect3D(HWND wndHandle, bool isWindowed) {
 
 void D3DApp::render(void) {
 
-	device_->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 255), 1.0f, 0);
-
-	RECT srcRect = { 0, 0, 640, 389 };
+	device_->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(107, 140, 255), 1.0f, 0);
 
 	if (!backbuffer_) {
 		check_hr(device_->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backbuffer_));
 	}
 
-	device_->StretchRect(offscreenSurface_,&srcRect, backbuffer_, NULL, D3DTEXF_NONE);
+	device_->StretchRect(offscreenSurface_,NULL, backbuffer_, NULL, D3DTEXF_NONE);
 	device_->Present(NULL, NULL, NULL, NULL);
 }
 
@@ -88,11 +86,56 @@ void D3DApp::loadSurface(void) {
 	}
 
 	check_hr(device_->CreateOffscreenPlainSurface(backbufferDescription_.Width, backbufferDescription_.Height,
-		D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &offscreenSurface_, NULL));
-	
-	RECT destRect = { 0, 0, 640, 389 };
-	std::wstring image1 = L"Segfault.bmp";
-	check_hr(D3DXLoadSurfaceFromFileW(offscreenSurface_, NULL, &destRect, image1.c_str(), NULL, D3DX_DEFAULT, 0, NULL));
+		D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &texSurface_, NULL));
+
+
+	RECT srcRect = { 0, 0, 191, 315 };// full size of sprite sheet
+	RECT dstRect = { 0, 0, 191, 315 };
+	std::wstring image1 = L".\\assets\\mario_tiles.bmp";
+	check_hr(D3DXLoadSurfaceFromFileW(texSurface_, NULL, &dstRect, image1.c_str(), &srcRect, D3DX_DEFAULT, 0, NULL));
+
+
+	check_hr(device_->CreateRenderTarget(backbufferDescription_.Width, backbufferDescription_.Height,
+		D3DFMT_X8R8G8B8, D3DMULTISAMPLE_NONE, 0, FALSE, &offscreenSurface_, NULL));
+
+	D3DCOLOR color = D3DCOLOR_XRGB(107, 140, 255);
+	check_hr(device_->ColorFill(offscreenSurface_, nullptr, color));
+
+
+	int scale = 4;
+	int sSize = 7;
+	int sqrSize = scale * sSize;
+	int startOffsetX = 40;
+	int startOffsetY = 2;
+	RECT srcTileRect;
+	RECT dstTileRect;
+	int height = static_cast<int>(backbufferDescription_.Height);
+	int width = static_cast<int>(backbufferDescription_.Width);
+
+	//int width = 640;
+	//int height = 480;
+
+	for (size_t i = 0; i < 4; i++) {
+
+		if (i == 0) {
+			srcTileRect = { startOffsetX, startOffsetY, startOffsetX + sSize, startOffsetY + sSize };
+			dstTileRect = { 0, height - sqrSize * 2 , sqrSize, height - sqrSize };
+		}
+		else if (i == 1) {
+			srcTileRect = { startOffsetX + sSize + 2, startOffsetY, startOffsetX + sSize * 2 + 2, startOffsetY + sSize };
+			dstTileRect = { sqrSize, height - sqrSize * 2 , sqrSize * 2, height - sqrSize };
+		}
+		else if (i == 2) {
+			srcTileRect = { startOffsetX, startOffsetY + sSize + 2 , startOffsetX + sSize, startOffsetY + sSize * 2 + 2 };
+			dstTileRect = { 0, height - sqrSize , sqrSize, height };
+		}
+		else if (i == 3) {
+			srcTileRect = { startOffsetX + sSize + 2, startOffsetY + sSize + 2, startOffsetX + sSize * 2 + 2, startOffsetY + sSize * 2 + 2 };
+			dstTileRect = { sqrSize, height - sqrSize , sqrSize * 2, height };
+		}
+
+		check_hr(device_->StretchRect(texSurface_, &srcTileRect, offscreenSurface_,&dstTileRect, D3DTEXF_NONE));
+	}
 }
 
 HRESULT D3DApp::buildDeviceList(void)

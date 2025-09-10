@@ -44,4 +44,5 @@ public:
 private:
 	
 	IDirect3DSurface9* offscreenSurface_;
+	IDirect3DSurface9* texSurface_;
 };
